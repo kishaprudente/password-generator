@@ -21,25 +21,31 @@ function generatePassword() {
   passwordCharSet = "";
 
   // ask user the length of password
-  var pwLength = prompt("Please enter how long you want your password to be");
+  var pwLength = prompt(
+    "Please enter how long you want your password to be. ( Should be between 8 & 128 )"
+  );
+
   // check if password is between 8 & 128
   if (pwLength >= 8 && pwLength <= 128) {
     password.length = pwLength;
-    console.log(password.length);
+
+    // ask user if they want lowercase letters
+    var isLowerCase = confirm(
+      "Do you want lowercase letters on your password?"
+    );
+    // ask user if they want uppercase
+    var isUpperCase = confirm(
+      "Do you want uppercase letters on your password?"
+    );
+    // ask user if they want numbers
+    var isNumeric = confirm("Do you want numbers on your password?");
+    // ask user if they want special characters
+    var hasSpecialChars = confirm(
+      "Do you want sepcial characters on your password?"
+    );
   } else {
     alert("password must be between 8-128 long");
   }
-
-  // ask user if they want lowercase letters
-  var isLowerCase = confirm("Do you want lowercase letters on your password?");
-  // ask user if they want uppercase
-  var isUpperCase = confirm("Do you want uppercase letters on your password?");
-  // ask user if they want numbers
-  var isNumeric = confirm("Do you want numbers on your password?");
-  // ask user if they want special characters
-  var hasSpecialChars = confirm(
-    "Do you want sepcial characters on your password?"
-  );
 
   if (isLowerCase === true) {
     passwordCharSet += lowercase;
@@ -52,6 +58,8 @@ function generatePassword() {
   }
   if (hasSpecialChars === true) {
     passwordCharSet += specialCharacters;
+  } else {
+    alert("Cannot generate a password");
   }
   for (var i = 0; i < pwLength; i++) {
     userPassword +=
